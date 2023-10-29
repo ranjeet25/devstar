@@ -12,11 +12,17 @@
 </script>
 
 <Intro heading={data.meta.title} description={data.meta.description} />
+<div
+	class="main-container mb-4 flex justify-center items-center flex-col lg:flex-row py-4 px-12 border-2 rounded-lg shadow-sm shadow-blue-300"
+>
+	<!-- Input fields to capture user input for each data item -->
+
 <section class="bg-white dark:bg-gray-900" />
 <select bind:value={opt} on:change={handleChange}>
 	<option value="BarChart">Bar Chart</option>
 	<option value="LineChart">Line Chart</option>
 </select>
+</div>
 
 <div class="flex justify-center items-center">
 	{#if opt === 'BarChart'}
