@@ -1,14 +1,29 @@
 <script lang="ts">
-	import Chart from './Chart.svelte';
 	import Intro from '$lib/Intro.svelte';
+	import LineChart from './LineChart.svelte';
+	import BarChart from './BarChart.svelte';
+
 	export let data;
-	export let arr;
+	let opt = 'BarChart'; // Set an initial value for opt.
+
+	function handleChange(event) {
+		opt = event.target.value;
+	}
 </script>
 
 <Intro heading={data.meta.title} description={data.meta.description} />
 <section class="bg-white dark:bg-gray-900" />
+<select bind:value={opt} on:change={handleChange}>
+	<option value="BarChart">Bar Chart</option>
+	<option value="LineChart">Line Chart</option>
+</select>
+
 <div class="flex justify-center items-center">
-	<Chart />
+	{#if opt === 'BarChart'}
+		<BarChart />
+	{:else if opt === 'LineChart'}
+		<LineChart />
+	{/if}
 </div>
 
 <style>

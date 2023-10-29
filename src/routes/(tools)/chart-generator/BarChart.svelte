@@ -1,12 +1,11 @@
 
 <script>
 	import { onMount } from 'svelte';
-	import { Button, Dropdown, DropdownItem, P } from 'flowbite-svelte';
-	import { ChevronDownSolid } from 'flowbite-svelte-icons';
 	import * as am5 from '@amcharts/amcharts5?client';
 	import * as am5xy from '@amcharts/amcharts5/xy?client';
 	import am5themes_Animated from '@amcharts/amcharts5/themes/Animated?client';
 	import * as am5plugins_exporting from "@amcharts/amcharts5/plugins/exporting?client";
+
 
 
 	let chartdiv;
@@ -41,7 +40,6 @@
 				pinchZoomX: true
 			})
 		);
-
 		// Add cursor
 		// https://www.amcharts.com/docs/v5/charts/xy-chart/cursor/
 		var cursor = chart.set('cursor', am5xy.XYCursor.new(root, {}));
@@ -114,9 +112,7 @@
 		updateChart();
 		window.addEventListener('resize', handleResize);
 
-		let exporting = am5plugins_exporting.Exporting.new(root, {
-		});
-
+		let exporting = am5plugins_exporting.Exporting.new(root, {});
 		exportFun = exporting;
 
 	});
@@ -153,38 +149,15 @@
 		}
 	}
 
-	function viewAllData(){
-
-		if(document.querySelector('#alldata').style.display == "none"){
-			document.querySelector('#alldata').style.display = "block";
-			document.querySelector('#view_all_btn').innerText = "close";
-		}else{
-			document.querySelector('#alldata').style.display = "none";
-			document.querySelector('#view_all_btn').innerText = "view all";
+	function viewAllData() {
+		if (document.querySelector('#alldata').style.display == 'none') {
+			document.querySelector('#alldata').style.display = 'block';
+			document.querySelector('#view_all_btn').innerText = 'Close';
+		} else {
+			document.querySelector('#alldata').style.display = 'none';
+			document.querySelector('#view_all_btn').innerText = 'View all';
 		}
-		
-		let i =1;
-		let sum = `<tr class="text-xs"> 
-				<td class="p-1 mx-2 w-2/4 text-gray-800 bg-gray-200 border-b-2 border-gray-500 "> srno </td> 
-				<td class="p-1 mx-2 w-2/4 text-gray-800 bg-gray-200 border-b-2 border-gray-500 "> x-axis </td> 
-				<td class="p-1 mx-2 w-2/4 text-gray-800 bg-gray-200 border-b-2 border-gray-500 "> y-axis </td>  
-				</tr>`;
-
-		data.forEach(e => {
-			
-			sum += `<tr class="py-1 text-xs px-2  "> 
-				<td class="p-2 m-2 text-violet-700 bg-violet-200 "> ${i} </td> 
-				<td class="p-2 m-2 text-green-700 bg-green-200 "> ${ e.country} </td> 
-				<td class="p-2 m-2 text-blue-700 bg-blue-200 "> ${ e.value} </td> 
-				<tr>`;
-
-			i += 1;
-			
-		});
-
-		document.querySelector('#alldata_table').innerHTML= sum;
-}
-
+	}
 
 </script>
 
@@ -194,12 +167,6 @@
 	<!-- Input fields to capture user input for each data item -->
 
 	<div class="min-w-full lg:min-w-0 bg-transparent lg:w-1/3">
-		<Button class="mb-4 w-3/4  bg-gray-600 hover:bg-gray-700 focus:ring-gray-400"
-			>Select Chart Type<ChevronDownSolid class="w-3 h-3 ml-2 text-white dark:text-white" /></Button
-		>
-		<Dropdown>
-			<DropdownItem>Bar Chart</DropdownItem>
-		</Dropdown>
 
 		<div id="input-div">
 			<input
@@ -295,7 +262,5 @@
 		#chartdiv {
 			width: 100%;
 		}
-
-		
 	}
 </style>
